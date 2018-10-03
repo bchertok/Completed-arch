@@ -1,7 +1,8 @@
 package generators;
 
+import appManager.InitPropertyReader;
 import com.thoughtworks.xstream.XStream;
-import model.DC;
+import dataModel.DC;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -11,13 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataGenerator {
-    public static void main(String[] args) throws IOException {
-        // аргумент количества строк
-        int count = 10;
-        // аргумент путь к файлу, куда писать
-        File file = new File("src\\test\\resources\\Data.xml");
-        List<DC> dcList = generate(count);
-        saveAsXML(dcList, file);
+
+    public static void generateDC() throws IOException {
+        InitPropertyReader initPropertyReader = new InitPropertyReader();
+        boolean generateNewData = initPropertyReader.isGenerateNewData();
+        int count = initPropertyReader.getNumberOfData();
+        if (generateNewData) {
+            // аргумент путь к файлу, куда писать
+            File file = new File("src\\test\\resources\\Data.xml");
+            List<DC> dcList = generate(count);
+            saveAsXML(dcList, file);
+        }
     }
 
 

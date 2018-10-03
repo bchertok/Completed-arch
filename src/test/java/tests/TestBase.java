@@ -1,22 +1,20 @@
 package tests;
 
-import appmanager.ApplicationManager;
+import appManager.ApplicationManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
 
-
 public class TestBase {
+    static private ApplicationManager app = new ApplicationManager();
 
     @BeforeAll
     public static void setUp() throws Exception {
-        ApplicationManager app = new ApplicationManager();
-       app.init();
+        app.init();
     }
 
     @AfterAll
     public static void tearDown() {
-        ApplicationManager app = new ApplicationManager();
         app.stop();
     }
 
